@@ -1,18 +1,48 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Mail, Phone, MapPin, Users, Github, Linkedin, Twitter, Send, CheckCircle } from "lucide-react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Users,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+  CheckCircle,
+} from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 // Define the form validation schema
 const formSchema = z.object({
@@ -36,10 +66,10 @@ const formSchema = z.object({
     .max(500, {
       message: "El mensaje no puede exceder los 500 caracteres.",
     }),
-})
+});
 
 export default function ContactoPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Initialize the form
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,21 +81,20 @@ export default function ContactoPage() {
       subject: "",
       message: "",
     },
-  })
+  });
 
   // Handle form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // In a real application, you would send this data to your backend
-    console.log(values)
+  function onSubmit() {
+    // // In a real application, you would send this data to your backend
 
     // Show success message
-    setIsSubmitted(true)
+    setIsSubmitted(true);
 
     // Reset form after 5 seconds
     setTimeout(() => {
-      setIsSubmitted(false)
-      form.reset()
-    }, 5000)
+      setIsSubmitted(false);
+      form.reset();
+    }, 5000);
   }
 
   return (
@@ -74,15 +103,18 @@ export default function ContactoPage() {
       <section className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white py-16 md:py-24">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <Badge variant="outline" className="text-white border-white/20 bg-white/10">
+            <Badge
+              className="text-white border-white/20 bg-white/10"
+              variant="outline"
+            >
               Ponte en Contacto
             </Badge>
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
               <span className="text-cyan-200">Contacto</span>
             </h1>
             <p className="max-w-[700px] text-blue-50 md:text-xl">
-              ¿Tienes preguntas sobre OCEAN, quieres colaborar o necesitas más información sobre el proyecto? Estamos
-              aquí para ayudarte.
+              ¿Tienes preguntas sobre OCEAN, quieres colaborar o necesitas más
+              información sobre el proyecto? Estamos aquí para ayudarte.
             </p>
           </div>
         </div>
@@ -95,9 +127,12 @@ export default function ContactoPage() {
             {/* Contact Form */}
             <Card className="border-blue-200">
               <CardHeader>
-                <CardTitle className="text-blue-900">Envíanos un Mensaje</CardTitle>
+                <CardTitle className="text-blue-900">
+                  Envíanos un Mensaje
+                </CardTitle>
                 <CardDescription>
-                  Completa el formulario y nos pondremos en contacto contigo lo antes posible
+                  Completa el formulario y nos pondremos en contacto contigo lo
+                  antes posible
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -105,12 +140,16 @@ export default function ContactoPage() {
                   <Alert className="bg-green-50 border-green-200">
                     <CheckCircle className="h-4 w-4 text-green-600" />
                     <AlertDescription className="text-green-800">
-                      ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
+                      ¡Gracias por tu mensaje! Nos pondremos en contacto contigo
+                      pronto.
                     </AlertDescription>
                   </Alert>
                 ) : (
                   <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                      className="space-y-6"
+                      onSubmit={form.handleSubmit(onSubmit)}
+                    >
                       <div className="grid gap-4 sm:grid-cols-2">
                         <FormField
                           control={form.control}
@@ -132,7 +171,11 @@ export default function ContactoPage() {
                             <FormItem>
                               <FormLabel>Email</FormLabel>
                               <FormControl>
-                                <Input type="email" placeholder="tu@email.com" {...field} />
+                                <Input
+                                  placeholder="tu@email.com"
+                                  type="email"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -146,19 +189,34 @@ export default function ContactoPage() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Tipo de consulta</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select
+                              defaultValue={field.value}
+                              onValueChange={field.onChange}
+                            >
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Selecciona el tipo de consulta" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="general">Consulta general</SelectItem>
-                                <SelectItem value="collaboration">Interés en colaborar</SelectItem>
-                                <SelectItem value="early-access">Acceso anticipado</SelectItem>
-                                <SelectItem value="technical">Consulta técnica</SelectItem>
-                                <SelectItem value="academic">Consulta académica</SelectItem>
-                                <SelectItem value="media">Medios de comunicación</SelectItem>
+                                <SelectItem value="general">
+                                  Consulta general
+                                </SelectItem>
+                                <SelectItem value="collaboration">
+                                  Interés en colaborar
+                                </SelectItem>
+                                <SelectItem value="early-access">
+                                  Acceso anticipado
+                                </SelectItem>
+                                <SelectItem value="technical">
+                                  Consulta técnica
+                                </SelectItem>
+                                <SelectItem value="academic">
+                                  Consulta académica
+                                </SelectItem>
+                                <SelectItem value="media">
+                                  Medios de comunicación
+                                </SelectItem>
                               </SelectContent>
                             </Select>
                             <FormMessage />
@@ -173,7 +231,10 @@ export default function ContactoPage() {
                           <FormItem>
                             <FormLabel>Asunto</FormLabel>
                             <FormControl>
-                              <Input placeholder="¿En qué podemos ayudarte?" {...field} />
+                              <Input
+                                placeholder="¿En qué podemos ayudarte?"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -187,21 +248,29 @@ export default function ContactoPage() {
                           <FormItem>
                             <FormLabel>Mensaje</FormLabel>
                             <FormControl>
-                              <Textarea placeholder="Escribe tu mensaje aquí..." className="min-h-[150px]" {...field} />
+                              <Textarea
+                                className="min-h-[150px]"
+                                placeholder="Escribe tu mensaje aquí..."
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
-                            <p className="text-xs text-gray-500 mt-1">{field.value.length}/500 caracteres</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {field.value.length}/500 caracteres
+                            </p>
                           </FormItem>
                         )}
                       />
 
                       <Button
-                        type="submit"
                         className="w-full bg-blue-600 hover:bg-blue-700"
                         disabled={form.formState.isSubmitting}
+                        type="submit"
                       >
                         <Send className="mr-2 h-4 w-4" />
-                        {form.formState.isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                        {form.formState.isSubmitting
+                          ? "Enviando..."
+                          : "Enviar Mensaje"}
                       </Button>
                     </form>
                   </Form>
@@ -214,8 +283,13 @@ export default function ContactoPage() {
               {/* Contact Details */}
               <Card className="border-blue-200">
                 <CardHeader>
-                  <CardTitle className="text-blue-900">Información de Contacto</CardTitle>
-                  <CardDescription>Formas directas de ponerte en contacto con el equipo de OCEAN</CardDescription>
+                  <CardTitle className="text-blue-900">
+                    Información de Contacto
+                  </CardTitle>
+                  <CardDescription>
+                    Formas directas de ponerte en contacto con el equipo de
+                    OCEAN
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-3">
@@ -224,7 +298,9 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">Email</p>
-                      <p className="text-gray-600">ocean.project@universidad.edu.ar</p>
+                      <p className="text-gray-600">
+                        ocean.project@universidad.edu.ar
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -255,8 +331,12 @@ export default function ContactoPage() {
               {/* Author Information */}
               <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50">
                 <CardHeader>
-                  <CardTitle className="text-blue-900">Sobre el Autor</CardTitle>
-                  <CardDescription>Información del estudiante responsable del proyecto OCEAN</CardDescription>
+                  <CardTitle className="text-blue-900">
+                    Sobre el Autor
+                  </CardTitle>
+                  <CardDescription>
+                    Información del estudiante responsable del proyecto OCEAN
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-center space-x-4">
@@ -264,42 +344,76 @@ export default function ContactoPage() {
                       <Users className="h-8 w-8 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-blue-900">Juan Pérez</h3>
-                      <p className="text-gray-600">Estudiante de Ingeniería Electrónica</p>
-                      <p className="text-sm text-gray-500">Universidad Nacional de Buenos Aires</p>
+                      <h3 className="font-semibold text-blue-900">
+                        Juan Pérez
+                      </h3>
+                      <p className="text-gray-600">
+                        Estudiante de Ingeniería Electrónica
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Universidad Nacional de Buenos Aires
+                      </p>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="font-medium text-blue-900">Áreas de Especialización</h4>
+                    <h4 className="font-medium text-blue-900">
+                      Áreas de Especialización
+                    </h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline" className="text-blue-600 border-blue-200">
+                      <Badge
+                        className="text-blue-600 border-blue-200"
+                        variant="outline"
+                      >
                         IoT
                       </Badge>
-                      <Badge variant="outline" className="text-blue-600 border-blue-200">
+                      <Badge
+                        className="text-blue-600 border-blue-200"
+                        variant="outline"
+                      >
                         Sensores
                       </Badge>
-                      <Badge variant="outline" className="text-blue-600 border-blue-200">
+                      <Badge
+                        className="text-blue-600 border-blue-200"
+                        variant="outline"
+                      >
                         Desarrollo Móvil
                       </Badge>
-                      <Badge variant="outline" className="text-blue-600 border-blue-200">
+                      <Badge
+                        className="text-blue-600 border-blue-200"
+                        variant="outline"
+                      >
                         Sistemas Embebidos
                       </Badge>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="font-medium text-blue-900">Redes Sociales</h4>
+                    <h4 className="font-medium text-blue-900">
+                      Redes Sociales
+                    </h4>
                     <div className="flex space-x-3">
-                      <Button variant="outline" size="icon" className="border-blue-200 text-blue-600 hover:bg-blue-50">
+                      <Button
+                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                        size="icon"
+                        variant="outline"
+                      >
                         <Github className="h-4 w-4" />
                         <span className="sr-only">GitHub</span>
                       </Button>
-                      <Button variant="outline" size="icon" className="border-blue-200 text-blue-600 hover:bg-blue-50">
+                      <Button
+                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                        size="icon"
+                        variant="outline"
+                      >
                         <Linkedin className="h-4 w-4" />
                         <span className="sr-only">LinkedIn</span>
                       </Button>
-                      <Button variant="outline" size="icon" className="border-blue-200 text-blue-600 hover:bg-blue-50">
+                      <Button
+                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                        size="icon"
+                        variant="outline"
+                      >
                         <Twitter className="h-4 w-4" />
                         <span className="sr-only">Twitter</span>
                       </Button>
@@ -311,12 +425,16 @@ export default function ContactoPage() {
               {/* Institution Information */}
               <Card className="border-blue-200">
                 <CardHeader>
-                  <CardTitle className="text-blue-900">Información Institucional</CardTitle>
+                  <CardTitle className="text-blue-900">
+                    Información Institucional
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
                     <h4 className="font-medium text-gray-900">Universidad</h4>
-                    <p className="text-gray-600">Universidad Nacional de Buenos Aires (UBA)</p>
+                    <p className="text-gray-600">
+                      Universidad Nacional de Buenos Aires (UBA)
+                    </p>
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Facultad</h4>
@@ -327,7 +445,9 @@ export default function ContactoPage() {
                     <p className="text-gray-600">Analista en Sistemas</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900">Director de Tesis</h4>
+                    <h4 className="font-medium text-gray-900">
+                      Director de Tesis
+                    </h4>
                     <p className="text-gray-600">Dr. María González</p>
                   </div>
                   <div>
@@ -345,7 +465,9 @@ export default function ContactoPage() {
       <section className="bg-blue-50 py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-blue-900">Preguntas Frecuentes</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-blue-900">
+              Preguntas Frecuentes
+            </h2>
             <p className="max-w-[700px] text-gray-600 md:text-xl">
               Respuestas a las consultas más comunes sobre el proyecto OCEAN
             </p>
@@ -353,37 +475,47 @@ export default function ContactoPage() {
           <div className="mx-auto max-w-3xl space-y-4">
             <Card className="border-blue-200">
               <CardHeader>
-                <CardTitle className="text-blue-900">¿Cuándo estará disponible OCEAN comercialmente?</CardTitle>
+                <CardTitle className="text-blue-900">
+                  ¿Cuándo estará disponible OCEAN comercialmente?
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  OCEAN es actualmente un proyecto de tesis universitaria. La disponibilidad comercial dependerá de los
-                  resultados de las pruebas y la evaluación posterior a la defensa de tesis, estimada para mediados de
-                  2025.
+                  OCEAN es actualmente un proyecto de tesis universitaria. La
+                  disponibilidad comercial dependerá de los resultados de las
+                  pruebas y la evaluación posterior a la defensa de tesis,
+                  estimada para mediados de 2025.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-blue-200">
               <CardHeader>
-                <CardTitle className="text-blue-900">¿Puedo colaborar con el proyecto?</CardTitle>
+                <CardTitle className="text-blue-900">
+                  ¿Puedo colaborar con el proyecto?
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  ¡Por supuesto! Estamos abiertos a colaboraciones académicas, técnicas y de investigación. Contáctanos
-                  a través del formulario especificando tu área de interés y experiencia.
+                  ¡Por supuesto! Estamos abiertos a colaboraciones académicas,
+                  técnicas y de investigación. Contáctanos a través del
+                  formulario especificando tu área de interés y experiencia.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-blue-200">
               <CardHeader>
-                <CardTitle className="text-blue-900">¿Cómo puedo acceder a la documentación técnica?</CardTitle>
+                <CardTitle className="text-blue-900">
+                  ¿Cómo puedo acceder a la documentación técnica?
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  La documentación técnica completa estará disponible después de la defensa de tesis. Actualmente,
-                  puedes solicitar acceso a documentos específicos para fines académicos o de investigación.
+                  La documentación técnica completa estará disponible después de
+                  la defensa de tesis. Actualmente, puedes solicitar acceso a
+                  documentos específicos para fines académicos o de
+                  investigación.
                 </p>
               </CardContent>
             </Card>
@@ -391,5 +523,5 @@ export default function ContactoPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

@@ -1,7 +1,14 @@
-import { Button } from "@heroui/button"
-import { Card, CardBody } from "@heroui/card"
-import { Link } from "@heroui/link"
-import { Droplets, Smartphone, Wifi, ArrowRight, BarChart3 } from 'lucide-react'
+import { Button } from "@heroui/button";
+import { Card, CardBody } from "@heroui/card";
+import { Link } from "@heroui/link";
+import Image from "next/image";
+import {
+  Droplets,
+  Smartphone,
+  Wifi,
+  ArrowRight,
+  BarChart3,
+} from "lucide-react";
 
 export default function OceanLanding() {
   return (
@@ -14,36 +21,45 @@ export default function OceanLanding() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Mantené tu piscina en equilibrio con <span className="text-cyan-200">OCEAN</span>
+                    Mantené tu piscina en equilibrio con{" "}
+                    <span className="text-cyan-200">OCEAN</span>
                   </h1>
                   <p className="max-w-[600px] text-blue-50 md:text-xl">
-                    La primera app argentina para el monitoreo inteligente de piscinas. Sensores IoT conectados que
-                    miden pH y temperatura en tiempo real.
+                    La primera app argentina para el monitoreo inteligente de
+                    piscinas. Sensores IoT conectados que miden pH y temperatura
+                    en tiempo real.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button 
-                    as={Link} 
-                    href="/sobre-ocean" 
-                    size="lg" 
+                  <Button
+                    as={Link}
                     className="bg-white text-blue-600 hover:bg-blue-50"
+                    href="/sobre-ocean"
+                    size="lg"
                     startContent={<ArrowRight className="h-4 w-4" />}
                   >
                     Conocer Más
                   </Button>
-                  <Button 
-                    as={Link} 
-                    href="/auth/signin" 
-                    variant="bordered" 
-                    size="lg" 
+                  <Button
+                    as={Link}
                     className="border-white/20 text-white hover:bg-white/10"
+                    href="/auth/signin"
+                    size="lg"
+                    variant="bordered"
                   >
                     Iniciar Sesión
                   </Button>
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <img src="/logo-icon.png" alt="Logo de Ocean" className="w-90 h-auto" />
+                <Image
+                  priority // opcional: mejora el LCP si es una imagen visible al inicio
+                  alt="Logo de Ocean"
+                  className="w-90 h-auto"
+                  height={200} // ajustá según el tamaño deseado
+                  src="/logo-icon.png"
+                  width={200} // ajustá según el tamaño deseado
+                />
               </div>
             </div>
           </div>
@@ -58,8 +74,8 @@ export default function OceanLanding() {
                   Tecnología que Cuida tu Piscina
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  OCEAN combina sensores inteligentes con una app intuitiva para mantener tu piscina siempre en
-                  condiciones óptimas.
+                  OCEAN combina sensores inteligentes con una app intuitiva para
+                  mantener tu piscina siempre en condiciones óptimas.
                 </p>
               </div>
             </div>
@@ -69,8 +85,12 @@ export default function OceanLanding() {
                   <div className="bg-blue-100 p-3 rounded-full">
                     <Droplets className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-blue-900">Monitoreo en Tiempo Real</h3>
-                  <p className="text-gray-600 text-center">Medición continua de parametros las 24 horas del día.</p>
+                  <h3 className="text-xl font-bold text-blue-900">
+                    Monitoreo en Tiempo Real
+                  </h3>
+                  <p className="text-gray-600 text-center">
+                    Medición continua de parametros las 24 horas del día.
+                  </p>
                 </CardBody>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -78,9 +98,12 @@ export default function OceanLanding() {
                   <div className="bg-blue-100 p-3 rounded-full">
                     <Smartphone className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-blue-900">App Intuitiva</h3>
+                  <h3 className="text-xl font-bold text-blue-900">
+                    App Intuitiva
+                  </h3>
                   <p className="text-gray-600 text-center">
-                    Interfaz simple y clara para visualizar todos los parámetros.
+                    Interfaz simple y clara para visualizar todos los
+                    parámetros.
                   </p>
                 </CardBody>
               </Card>
@@ -89,7 +112,9 @@ export default function OceanLanding() {
                   <div className="bg-blue-100 p-3 rounded-full">
                     <Wifi className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-blue-900">Conectividad IoT</h3>
+                  <h3 className="text-xl font-bold text-blue-900">
+                    Conectividad IoT
+                  </h3>
                   <p className="text-gray-600 text-center">
                     Sensores conectados vía Wi-Fi para acceso remoto completo.
                   </p>
@@ -100,7 +125,9 @@ export default function OceanLanding() {
                   <div className="bg-blue-100 p-3 rounded-full">
                     <BarChart3 className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-blue-900">Datos Históricos</h3>
+                  <h3 className="text-xl font-bold text-blue-900">
+                    Datos Históricos
+                  </h3>
                   <p className="text-gray-600 text-center">
                     Análisis de tendencias y reportes detallados de tu piscina.
                   </p>
@@ -119,25 +146,26 @@ export default function OceanLanding() {
                   ¿Listo para Revolucionar el Cuidado de tu Piscina?
                 </h2>
                 <p className="max-w-[600px] mx-auto text-gray-600 text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Únete a nuestro programa de acceso anticipado y sé parte del futuro del monitoreo de piscinas.
+                  Únete a nuestro programa de acceso anticipado y sé parte del
+                  futuro del monitoreo de piscinas.
                 </p>
               </div>
               <div className="space-x-4">
-                <Button 
-                  as={Link} 
-                  href="/auth/signin" 
-                  size="lg" 
+                <Button
+                  as={Link}
                   color="primary"
                   endContent={<ArrowRight className="h-4 w-4" />}
+                  href="/auth/signin"
+                  size="lg"
                 >
                   Iniciar Sesión
                 </Button>
-                <Button 
-                  as={Link} 
-                  href="/sobre-ocean" 
-                  variant="bordered" 
-                  size="lg" 
+                <Button
+                  as={Link}
                   className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                  href="/sobre-ocean"
+                  size="lg"
+                  variant="bordered"
                 >
                   Conocer Más
                 </Button>
@@ -147,5 +175,5 @@ export default function OceanLanding() {
         </section>
       </main>
     </div>
-  )
+  );
 }

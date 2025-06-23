@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { Footer }  from "@/components/footer";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -46,13 +46,10 @@ export default function RootLayout({
           <Navbar />
 
           {/* CONTENIDO PRINCIPAL */}
-          <main className="flex flex-col min-h-screen">
-            {children}
-          </main>
+          <main className="flex flex-col min-h-screen">{children}</main>
 
           {/* FOOTER */}
           <Footer />
-
         </Providers>
       </body>
     </html>

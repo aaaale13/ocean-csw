@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { usePathname } from "next/navigation"
-import { Droplets } from "lucide-react"
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Droplets } from "lucide-react";
 import {
   Navbar as HeroUINavbar,
   NavbarBrand,
@@ -11,9 +11,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-} from "@heroui/navbar"
-import { Button } from "@heroui/button"
-import { Link } from "@heroui/link"
+} from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
 
 const navigation = [
   { name: "Inicio", href: "/" },
@@ -22,21 +22,24 @@ const navigation = [
   { name: "Acceso Anticipado", href: "/acceso-anticipado" },
   { name: "Avance de la Tesis", href: "/avance-tesis" },
   { name: "Contacto", href: "/contacto" },
-]
+];
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <HeroUINavbar onMenuOpenChange={setIsMenuOpen} className="bg-white/95 backdrop-blur z-50 shadow-sm">
+    <HeroUINavbar
+      className="bg-white/95 backdrop-blur z-50 shadow-sm"
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link href="/" className="flex items-center space-x-2">
+          <Link className="flex items-center space-x-2" href="/">
             <Droplets className="h-8 w-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">OCEAN</span>
           </Link>
@@ -47,10 +50,10 @@ export function Navbar() {
         {navigation.map((item) => (
           <NavbarItem key={item.name} isActive={pathname === item.href}>
             <Link
-              href={item.href}
               className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                 pathname === item.href ? "text-blue-600" : "text-gray-600"
               }`}
+              href={item.href}
             >
               {item.name}
             </Link>
@@ -60,7 +63,7 @@ export function Navbar() {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} href="/auth/signin" color="primary" variant="solid">
+          <Button as={Link} color="primary" href="/auth/signin" variant="solid">
             Iniciar Sesión
           </Button>
         </NavbarItem>
@@ -70,10 +73,10 @@ export function Navbar() {
         {navigation.map((item) => (
           <NavbarMenuItem key={item.name}>
             <Link
-              href={item.href}
               className={`w-full text-lg font-medium transition-colors hover:text-blue-600 py-2 ${
                 pathname === item.href ? "text-blue-600" : "text-gray-600"
               }`}
+              href={item.href}
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
@@ -83,10 +86,10 @@ export function Navbar() {
         <NavbarMenuItem>
           <Button
             as={Link}
-            href="/auth/signin"
-            color="primary"
-            variant="solid"
             className="mt-4 w-full"
+            color="primary"
+            href="/auth/signin"
+            variant="solid"
             onClick={() => setIsMenuOpen(false)}
           >
             Iniciar Sesión
@@ -94,5 +97,5 @@ export function Navbar() {
         </NavbarMenuItem>
       </NavbarMenu>
     </HeroUINavbar>
-  )
+  );
 }

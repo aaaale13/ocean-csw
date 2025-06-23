@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Droplets, Mail, Github, Linkedin } from "lucide-react"
+import Link from "next/link";
+import { Droplets, Mail, Github, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -13,24 +13,36 @@ export function Footer() {
               <Droplets className="h-6 w-6 text-blue-600" />
               <span className="text-xl font-bold text-blue-900">OCEAN</span>
             </div>
-            <p className="text-sm text-gray-600">Monitoreo inteligente de piscinas mediante sensores IoT conectados.</p>
+            <p className="text-sm text-gray-600">
+              Monitoreo inteligente de piscinas mediante sensores IoT
+              conectados.
+            </p>
           </div>
 
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-900">Navegación</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/"
+                >
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link href="/sobre-ocean" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/sobre-ocean"
+                >
                   Sobre OCEAN
                 </Link>
               </li>
               <li>
-                <Link href="/sensores" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/sensores"
+                >
                   Sensores
                 </Link>
               </li>
@@ -41,17 +53,26 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-gray-900">Proyecto</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/acceso-anticipado" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/acceso-anticipado"
+                >
                   Early Access
                 </Link>
               </li>
               <li>
-                <Link href="/avance-tesis" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/avance-tesis"
+                >
                   Avance de la Tesis
                 </Link>
               </li>
               <li>
-                <Link href="/contacto" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/contacto"
+                >
                   Contacto
                 </Link>
               </li>
@@ -73,5 +94,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
