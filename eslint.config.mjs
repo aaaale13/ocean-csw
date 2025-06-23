@@ -83,7 +83,7 @@ export default defineConfig([globalIgnores([
         },
     },
 
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
 
     rules: {
         "no-console": "warn",
