@@ -1,6 +1,9 @@
 "use server";
 
-import { prisma } from "@/prisma/client";
+import { PrismaClient } from "@/lib/prisma/generated/prisma";
+
+
+const prisma = new PrismaClient()
 
 export const createUserContact = async (data: {
   fullname: string;
