@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/prisma/client";
-import { revalidatePath } from "next/cache";
 
 export const createUserContact = async (data: {
   fullname: string;
