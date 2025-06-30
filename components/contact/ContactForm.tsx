@@ -80,12 +80,13 @@ export function ContactForm() {
 
   return (
     <>
-    <CardHeader>
-      <CardTitle className="text-blue-900">Envíanos un Mensaje</CardTitle>
-      <CardDescription>
-        Completa el formulario y nos pondremos en contacto contigo lo antes posible
-      </CardDescription>
-    </CardHeader>
+      <CardHeader>
+        <CardTitle className="text-blue-900">Envíanos un Mensaje</CardTitle>
+        <CardDescription>
+          Completa el formulario y nos pondremos en contacto contigo lo antes
+          posible
+        </CardDescription>
+      </CardHeader>
       {isSubmitted && (
         <Alert className="bg-green-50 border-green-200 mb-4">
           <CheckCircle className="h-4 w-4 text-green-600" />
