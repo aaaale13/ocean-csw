@@ -1,5 +1,5 @@
 "use client";
-
+import { ContactForm } from "@/components/contact/ContactForm";
 import { useState } from "react";
 import {
   Mail,
@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@heroui/button";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -83,20 +83,6 @@ export default function ContactoPage() {
     },
   });
 
-  // Handle form submission
-  function onSubmit() {
-    // // In a real application, you would send this data to your backend
-
-    // Show success message
-    setIsSubmitted(true);
-
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      form.reset();
-    }, 5000);
-  }
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -124,157 +110,11 @@ export default function ContactoPage() {
       <section className="py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+
             {/* Contact Form */}
-            <Card className="border-blue-200">
-              <CardHeader>
-                <CardTitle className="text-blue-900">
-                  Envíanos un Mensaje
-                </CardTitle>
-                <CardDescription>
-                  Completa el formulario y nos pondremos en contacto contigo lo
-                  antes posible
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {isSubmitted ? (
-                  <Alert className="bg-green-50 border-green-200">
-                    <CheckCircle className="h-4 w-4 text-green-600" />
-                    <AlertDescription className="text-green-800">
-                      ¡Gracias por tu mensaje! Nos pondremos en contacto contigo
-                      pronto.
-                    </AlertDescription>
-                  </Alert>
-                ) : (
-                  <Form {...form}>
-                    <form
-                      className="space-y-6"
-                      onSubmit={form.handleSubmit(onSubmit)}
-                    >
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Nombre</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Tu nombre" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="tu@email.com"
-                                  type="email"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="consultationType"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Tipo de consulta</FormLabel>
-                            <Select
-                              defaultValue={field.value}
-                              onValueChange={field.onChange}
-                            >
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Selecciona el tipo de consulta" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="general">
-                                  Consulta general
-                                </SelectItem>
-                                <SelectItem value="collaboration">
-                                  Interés en colaborar
-                                </SelectItem>
-                                <SelectItem value="early-access">
-                                  Acceso anticipado
-                                </SelectItem>
-                                <SelectItem value="technical">
-                                  Consulta técnica
-                                </SelectItem>
-                                <SelectItem value="academic">
-                                  Consulta académica
-                                </SelectItem>
-                                <SelectItem value="media">
-                                  Medios de comunicación
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Asunto</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="¿En qué podemos ayudarte?"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Mensaje</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                className="min-h-[150px]"
-                                placeholder="Escribe tu mensaje aquí..."
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                            <p className="text-xs text-gray-500 mt-1">
-                              {field.value.length}/500 caracteres
-                            </p>
-                          </FormItem>
-                        )}
-                      />
-
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700"
-                        disabled={form.formState.isSubmitting}
-                        type="submit"
-                      >
-                        <Send className="mr-2 h-4 w-4" />
-                        {form.formState.isSubmitting
-                          ? "Enviando..."
-                          : "Enviar Mensaje"}
-                      </Button>
-                    </form>
-                  </Form>
-                )}
+            <Card className="flex flex-col space-y-6"> 
+              <CardContent>
+                <ContactForm />
               </CardContent>
             </Card>
 
@@ -393,27 +233,15 @@ export default function ContactoPage() {
                       Redes Sociales
                     </h4>
                     <div className="flex space-x-3">
-                      <Button
-                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                        size="icon"
-                        variant="outline"
-                      >
+                      <Button className="border-blue-200 text-blue-600 hover:bg-blue-50">
                         <Github className="h-4 w-4" />
                         <span className="sr-only">GitHub</span>
                       </Button>
-                      <Button
-                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                        size="icon"
-                        variant="outline"
-                      >
+                      <Button className="border-blue-200 text-blue-600 hover:bg-blue-50">
                         <Linkedin className="h-4 w-4" />
                         <span className="sr-only">LinkedIn</span>
                       </Button>
-                      <Button
-                        className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                        size="icon"
-                        variant="outline"
-                      >
+                      <Button className="border-blue-200 text-blue-600 hover:bg-blue-50">
                         <Twitter className="h-4 w-4" />
                         <span className="sr-only">Twitter</span>
                       </Button>

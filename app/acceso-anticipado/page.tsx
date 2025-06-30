@@ -348,6 +348,7 @@ export default function AccesoAnticipadoPage() {
                     id="experience"
                   >
                     <option value="">Selecciona tu nivel</option>
+                    <option value="null">nulo</option>
                     <option value="beginner">Principiante</option>
                     <option value="intermediate">Intermedio</option>
                     <option value="advanced">Avanzado</option>

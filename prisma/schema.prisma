@@ -6,10 +6,20 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  output   = "../prisma/generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model UserContact {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fullname      String
+  email     String   @unique
+  typemessage     String
+  message String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
