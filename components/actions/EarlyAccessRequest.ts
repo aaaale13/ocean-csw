@@ -1,4 +1,4 @@
-
+// Habilita el modo de "Server Actions" para este archivo
 "use server";
 
 // Importa el cliente de Prisma para interactuar con la base de datos
@@ -92,7 +92,7 @@ export const updateEarlyAccessStatusAndNotify = async (
 
   // --- Lógica de envío de correo a SENDGRID con mensajes profesionales ---
   const msg = {
-    // Remitente del correo. EMAIL_USER debe ser tu dirección verificada en SendGrid.
+    // Remitente del correo. EMAIL_USER debe ser tu dirección verificada en SendGrid (ahora alejoscarola@iresm.edu.ar).
     from: `"OCEAN Admin" <${process.env.EMAIL_USER}>`,
     // Destinatario del correo, tomado de la solicitud de la base de datos
     to: request.email,
@@ -142,8 +142,6 @@ export const updateEarlyAccessStatusAndNotify = async (
   } catch (error: any) {
     // Captura y registra cualquier error que ocurra durante el envío del correo
     console.error("Error al enviar correo con SendGrid:", error.response?.body || error);
-    // Opcional: puedes lanzar el error de nuevo si quieres que el frontend lo maneje
-    // throw new Error('Failed to send email.');
   }
   // --- FIN DE LÓGICA DE ENVÍO CON SENDGRID ---
 
