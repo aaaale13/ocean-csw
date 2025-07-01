@@ -28,6 +28,11 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Ocultar navbar en /admin y sus subrutas
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <HeroUINavbar
       className="bg-white/95 backdrop-blur z-50 shadow-sm"

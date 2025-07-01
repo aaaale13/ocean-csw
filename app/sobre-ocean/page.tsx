@@ -19,6 +19,7 @@ import Image from "next/image";
 export default function SobreOceanPage() {
   return (
     <div className="flex flex-col">
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">

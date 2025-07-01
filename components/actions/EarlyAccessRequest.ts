@@ -1,8 +1,16 @@
 "use server";
 
 import { PrismaClient } from "@/lib/prisma/generated/prisma";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
+
+export const getAllEarlyAccessRequests = async () => {
+  const requests = await prisma.earlyAccessRequest.findMany({
+    orderBy: { createdAt: "desc" }, // opcional: ordena por fecha de creación descendente
+  });
+  return requests;
+};
 
 export const createEarlyAccessRequest = async (data: {
   firstName: string;
@@ -30,4 +38,12 @@ export const createEarlyAccessRequest = async (data: {
       acceptedTerms: data.acceptedTerms,
     },
   });
+};
+
+export const deleteEarlyAccessRequest = async (id: string) => {
+  await prisma.earlyAccessRequest.delete({
+    where: { id },
+  });
+
+  revalidatePath("/admin");
 };

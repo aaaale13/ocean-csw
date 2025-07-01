@@ -1,9 +1,16 @@
 "use server";
 
 import { PrismaClient } from "@/lib/prisma/generated/prisma";
+import { revalidatePath } from "next/cache";
 
+const prisma = new PrismaClient();
 
-const prisma = new PrismaClient()
+export const getAllUserContacts = async () => {
+  const contacts = await prisma.userContact.findMany({
+    orderBy: { createdAt: "desc" }, // ordena por fecha descendente
+  });
+  return contacts;
+};
 
 export const createUserContact = async (data: {
   fullname: string;
@@ -19,4 +26,12 @@ export const createUserContact = async (data: {
       message: data.message,
     },
   });
+};
+
+export const deleteUserContact = async (id: string) => {
+  await prisma.userContact.delete({
+    where: { id },
+  });
+
+  revalidatePath("/admin"); // para recargar la página admin después de eliminar
 };
