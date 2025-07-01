@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { EarlyAccessForm } from "@/components/acceso-anticipado/EarlyAccessForm";
+
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -221,177 +223,9 @@ export default function AccesoAnticipadoPage() {
       </section>
 
       {/* Registration Form */}
-      <section className="py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="mx-auto max-w-2xl space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-blue-900">
-                Únete al Programa
-              </h2>
-              <p className="text-gray-600 md:text-lg">
-                Completa el formulario y nos pondremos en contacto contigo para
-                coordinar el acceso a la app.
-              </p>
-            </div>
-            <Card className="border-blue-200">
-              <CardHeader>
-                <CardTitle className="text-blue-900">
-                  Formulario de Registro
-                </CardTitle>
-                <CardDescription>
-                  Todos los campos son obligatorios para procesar tu solicitud
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label
-                      className="text-sm font-medium text-gray-700"
-                      htmlFor="firstName"
-                    >
-                      Nombre
-                    </label>
-                    <Input id="firstName" placeholder="Tu nombre" />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      className="text-sm font-medium text-gray-700"
-                      htmlFor="lastName"
-                    >
-                      Apellido
-                    </label>
-                    <Input id="lastName" placeholder="Tu apellido" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="email"
-                  >
-                    Email
-                  </label>
-                  <Input id="email" placeholder="tu@email.com" type="email" />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="phone"
-                  >
-                    Teléfono
-                  </label>
-                  <Input id="phone" placeholder="+54 11 1234-5678" />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="city"
-                  >
-                    Ciudad
-                  </label>
-                  <Input id="city" placeholder="Tu ciudad" />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="poolType"
-                  >
-                    Tipo de piscina
-                  </label>
-                  <select
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    id="poolType"
-                  >
-                    <option value="">Selecciona el tipo</option>
-                    <option value="residential">Residencial</option>
-                    <option value="commercial">Comercial</option>
-                    <option value="community">Comunitaria</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="sensorOption"
-                  >
-                    ¿Cómo planeas usar OCEAN?
-                  </label>
-                  <select
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    id="sensorOption"
-                  >
-                    <option value="">Selecciona una opción</option>
-                    <option value="own-sensor">
-                      Tengo mi propio sensor compatible
-                    </option>
-                    <option value="manual-mode">
-                      Quiero probarlo en modo manual
-                    </option>
-                    <option value="interested-sensor">
-                      Me interesa adquirir un sensor
-                    </option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="experience"
-                  >
-                    Experiencia con tecnología IoT
-                  </label>
-                  <select
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    id="experience"
-                  >
-                    <option value="">Selecciona tu nivel</option>
-                    <option value="null">nulo</option>
-                    <option value="beginner">Principiante</option>
-                    <option value="intermediate">Intermedio</option>
-                    <option value="advanced">Avanzado</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="motivation"
-                  >
-                    ¿Por qué quieres participar?
-                  </label>
-                  <textarea
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    id="motivation"
-                    placeholder="Cuéntanos tu motivación para unirte al programa Early Access..."
-                    rows={4}
-                  />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input className="rounded" id="terms" type="checkbox" />
-                  <label className="text-sm text-gray-700" htmlFor="terms">
-                    Acepto los{" "}
-                    <Link
-                      className="text-blue-600 hover:text-blue-800 underline"
-                      href="/terminos-condiciones"
-                    >
-                      términos y condiciones
-                    </Link>{" "}
-                    del programa Early Access
-                  </label>
-                </div>
-
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
-                  Enviar Solicitud
-                </button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <main className="container mx-auto p-4">
+        <EarlyAccessForm />
+      </main>
     </div>
   );
 }

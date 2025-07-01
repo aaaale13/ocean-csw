@@ -90,6 +90,14 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t pt-8 text-center text-sm text-gray-600">
+          <li>
+                <Link
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  href="/terminos-condiciones"
+                >
+                  Terminos y Condiciones del proyecto
+                </Link>
+              </li>
           <p>© 2024 OCEAN Project. Proyecto de Tesis Universitaria.</p>
         </div>
       </div>

@@ -25,3 +25,18 @@ model UserContact {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model EarlyAccessRequest {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName     String
+  lastName      String
+  email         String   @unique
+  phone         String
+  city          String
+  poolType      String
+  sensorOption  String
+  experience    String
+  motivation    String
+  acceptedTerms Boolean
+  createdAt     DateTime @default(now())
+}
