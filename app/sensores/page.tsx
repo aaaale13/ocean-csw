@@ -9,7 +9,7 @@ import {
   ArrowRight,
   Settings,
 } from "lucide-react";
-import Image from "next/image";
+import Image from "next/image"; // Asegúrate de que Image de next/image esté importado
 import Link from "next/link";
 
 export default function SensoresPage() {
@@ -42,12 +42,14 @@ export default function SensoresPage() {
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-xl blur-xl opacity-20 -z-10" />
+              {/* CAMBIO AQUI: Usando tu imagen sensor-ocean.jpg */}
               <Image
-                alt="Sensores compatibles con OCEAN"
+                alt="Sensor OCEAN para monitoreo de piscinas" // Texto alternativo descriptivo
                 className="mx-auto rounded-xl border border-blue-100 shadow-2xl"
-                height="500"
-                src="/placeholder.svg?height=500&width=600"
-                width="600"
+                height={500} // Altura de la imagen (ajusta si es necesario)
+                src="/sensores-ocean.jpg" // Ruta relativa a la carpeta public
+                width={600} // Ancho de la imagen (ajusta si es necesario)
+                priority // Carga la imagen con alta prioridad si es visible en la carga inicial
               />
             </div>
             <div className="space-y-6">

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createUserContact } from "@/components/actions/contact"; // importa tu action
-import { Button } from "@heroui/button";
+import { Button } from "@heroui/button"; // Asumo que @heroui/button es tu componente de botón
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -27,6 +27,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Send, CheckCircle } from "lucide-react";
 
+// Define el esquema de validación para el formulario de contacto
 const formSchema = z.object({
   name: z
     .string()
@@ -46,8 +47,11 @@ const formSchema = z.object({
     .max(500, { message: "El mensaje no puede exceder los 500 caracteres." }),
 });
 
+// Componente principal del formulario de contacto
 export function ContactForm() {
+  // Estado para controlar si el formulario ha sido enviado con éxito
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // Inicializa el hook useForm de react-hook-form con el resolver de Zod
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -59,22 +63,29 @@ export function ContactForm() {
     },
   });
 
+  /**
+   * Función que se ejecuta al enviar el formulario.
+   * Llama a la Server Action para crear un nuevo contacto.
+   * @param data Los datos del formulario validados por Zod.
+   */
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
+      // Llama a la Server Action para guardar el contacto
       await createUserContact({
         fullname: data.name,
         email: data.email,
         typemessage: data.consultationType,
         message: data.message,
       });
-      setIsSubmitted(true);
+      setIsSubmitted(true); // Muestra el mensaje de éxito
+      // Después de 5 segundos, oculta el mensaje y resetea el formulario
       setTimeout(() => {
         setIsSubmitted(false);
         form.reset();
       }, 5000);
     } catch (error) {
       console.error("Error al enviar contacto:", error);
-      // Podés agregar aquí un alert o toast para avisar al usuario
+      // Puedes agregar aquí una notificación al usuario si el envío falla
     }
   }
 
@@ -87,6 +98,7 @@ export function ContactForm() {
           posible
         </CardDescription>
       </CardHeader>
+      {/* Mensaje de éxito visible después de enviar el formulario */}
       {isSubmitted && (
         <Alert className="bg-green-50 border-green-200 mb-4">
           <CheckCircle className="h-4 w-4 text-green-600" />
@@ -97,8 +109,7 @@ export function ContactForm() {
       )}
       <Form {...form}>
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-          {/* Aquí metés los campos con FormField como en tu código original */}
-          {/* Ejemplo para nombre */}
+          {/* Campo Nombre */}
           <FormField
             control={form.control}
             name="name"
@@ -112,8 +123,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          {/* El resto de campos igual */}
-          {/* Email */}
+          {/* Campo Email */}
           <FormField
             control={form.control}
             name="email"
@@ -127,7 +137,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          {/* Consultation Type */}
+          {/* Campo Tipo de consulta */}
           <FormField
             control={form.control}
             name="consultationType"
@@ -139,11 +149,12 @@ export function ContactForm() {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    {/* AQUI SE APLICA EL FONDO BLANCO */}
+                    <SelectTrigger className="bg-white">
                       <SelectValue placeholder="Selecciona el tipo de consulta" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     <SelectItem value="general">Consulta general</SelectItem>
                     <SelectItem value="collaboration">
                       Interés en colaborar
@@ -162,7 +173,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          {/* Subject */}
+          {/* Campo Asunto */}
           <FormField
             control={form.control}
             name="subject"
@@ -176,7 +187,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
-          {/* Message */}
+          {/* Campo Mensaje */}
           <FormField
             control={form.control}
             name="message"
@@ -197,6 +208,7 @@ export function ContactForm() {
               </FormItem>
             )}
           />
+          {/* Botón de envío del formulario */}
           <Button
             className="w-full bg-blue-600 hover:bg-blue-700 text-white"
             disabled={form.formState.isSubmitting}

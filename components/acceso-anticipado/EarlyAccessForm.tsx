@@ -28,16 +28,18 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Send, CheckCircle } from "lucide-react";
 
 const formSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-  city: z.string(),
-  poolType: z.string(),
-  sensorOption: z.string(),
-  experience: z.string(),
-  motivation: z.string(),
-  acceptedTerms: z.boolean(),
+  firstName: z.string().min(1, "El nombre es requerido"),
+  lastName: z.string().min(1, "El apellido es requerido"),
+  email: z.string().email("Ingresa un email válido"),
+  phone: z.string().min(1, "El teléfono es requerido"),
+  city: z.string().min(1, "La ciudad es requerida"),
+  poolType: z.string().min(1, "Selecciona un tipo de piscina"),
+  sensorOption: z.string().min(1, "Selecciona una opción de uso"),
+  experience: z.string().min(1, "Selecciona tu nivel de experiencia"),
+  motivation: z.string().min(1, "La motivación es requerida"),
+  acceptedTerms: z.boolean().refine(val => val === true, {
+    message: "Debes aceptar los términos y condiciones",
+  }),
 });
 
 export function EarlyAccessForm() {
@@ -159,6 +161,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Campo Tipo de piscina */}
           <FormField
             control={form.control}
             name="poolType"
@@ -170,11 +173,12 @@ export function EarlyAccessForm() {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    {/* CAMBIO AQUI: !bg-white */}
+                    <SelectTrigger className="!bg-white">
                       <SelectValue placeholder="Selecciona el tipo" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="!bg-white">
                     <SelectItem value="residential">Residencial</SelectItem>
                     <SelectItem value="commercial">Comercial</SelectItem>
                     <SelectItem value="community">Comunitaria</SelectItem>
@@ -185,6 +189,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Campo ¿Cómo planeas usar OCEAN? */}
           <FormField
             control={form.control}
             name="sensorOption"
@@ -196,11 +201,12 @@ export function EarlyAccessForm() {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    {/* CAMBIO AQUI: !bg-white */}
+                    <SelectTrigger className="!bg-white">
                       <SelectValue placeholder="Selecciona una opción" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="!bg-white">
                     <SelectItem value="own-sensor">
                       Tengo mi propio sensor compatible
                     </SelectItem>
@@ -217,6 +223,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Campo Experiencia con tecnología IoT */}
           <FormField
             control={form.control}
             name="experience"
@@ -228,11 +235,12 @@ export function EarlyAccessForm() {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    {/* CAMBIO AQUI: !bg-white */}
+                    <SelectTrigger className="!bg-white">
                       <SelectValue placeholder="Selecciona tu nivel" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="!bg-white">
                     <SelectItem value="null">nulo</SelectItem>
                     <SelectItem value="beginner">Principiante</SelectItem>
                     <SelectItem value="intermediate">Intermedio</SelectItem>
@@ -244,6 +252,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Campo ¿Por qué quieres participar? */}
           <FormField
             control={form.control}
             name="motivation"
@@ -262,6 +271,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Campo Acepto términos y condiciones */}
           <FormField
             control={form.control}
             name="acceptedTerms"
@@ -287,6 +297,7 @@ export function EarlyAccessForm() {
             )}
           />
 
+          {/* Botón de envío del formulario */}
           <Button
             type="submit"
             disabled={form.formState.isSubmitting}

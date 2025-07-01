@@ -20,8 +20,9 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 
-import { DeleteButtonContact } from "@/components/DeleteButtonContact"; 
+import { DeleteButtonContact } from "@/components/DeleteButtonContact";
 import { DeleteButtonEarlyAccess } from "@/components/DeleteButtonEarlyAccess";
+import { StatusButtons } from "@/components/StatusButtons"; // Importamos StatusButtons
 
 export default async function ContactoPage() {
   const contacts = await getAllUserContacts();
@@ -101,14 +102,23 @@ export default async function ContactoPage() {
                     <TableCell>{req.city}</TableCell>
                     <TableCell><Badge variant="outline" className="capitalize">{req.poolType}</Badge></TableCell>
                     <TableCell>
-                      {req.acceptedTerms ? (
+                      {/* Mostrar el estado actual basado en req.status */}
+                      {req.status === "aceptado" ? (
                         <Badge variant="outline" className="bg-green-500 text-white">Aceptado</Badge>
+                      ) : req.status === "rechazado" ? (
+                        <Badge variant="outline" className="bg-red-500 text-white">Rechazado</Badge>
                       ) : (
                         <Badge variant="outline" className="bg-yellow-400 text-black">Pendiente</Badge>
                       )}
                     </TableCell>
                     <TableCell className="max-w-xs truncate" title={req.motivation}>{req.motivation}</TableCell>
-                    <TableCell><DeleteButtonEarlyAccess id={req.id} /></TableCell>
+                    <TableCell className="flex items-center gap-2">
+                      <DeleteButtonEarlyAccess id={req.id} />
+                      {/* Renderizar StatusButtons solo si el estado no es 'aceptado' o 'rechazado' */}
+                      {req.status !== "aceptado" && req.status !== "rechazado" && (
+                        <StatusButtons id={req.id} />
+                      )}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
