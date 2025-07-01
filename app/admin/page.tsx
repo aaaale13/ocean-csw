@@ -1,4 +1,4 @@
-import { getAllUserContacts } from "@/components/actions/contact"; 
+import { getAllUserContacts } from "@/components/actions/contact";
 import { getAllEarlyAccessRequests } from "@/components/actions/EarlyAccessRequest";
 
 import {
@@ -28,7 +28,9 @@ export default async function ContactoPage() {
     <>
       <div className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-extrabold">Panel de Administración - OCEAN</h1>
+          <h1 className="text-4xl font-extrabold">
+            Panel de Administración - OCEAN
+          </h1>
           <p className="text-2xl mt-2">Gestión de formularios</p>
         </div>
       </div>

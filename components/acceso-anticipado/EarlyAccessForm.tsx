@@ -70,7 +70,9 @@ export function EarlyAccessForm() {
   return (
     <>
       <CardHeader>
-        <CardTitle className="text-blue-900">Únete al Programa Early Access</CardTitle>
+        <CardTitle className="text-blue-900">
+          Únete al Programa Early Access
+        </CardTitle>
         <CardDescription>
           Completa el formulario y nos pondremos en contacto contigo.
         </CardDescription>
@@ -199,9 +201,15 @@ export function EarlyAccessForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="own-sensor">Tengo mi propio sensor compatible</SelectItem>
-                    <SelectItem value="manual-mode">Quiero probarlo en modo manual</SelectItem>
-                    <SelectItem value="interested-sensor">Me interesa adquirir un sensor</SelectItem>
+                    <SelectItem value="own-sensor">
+                      Tengo mi propio sensor compatible
+                    </SelectItem>
+                    <SelectItem value="manual-mode">
+                      Quiero probarlo en modo manual
+                    </SelectItem>
+                    <SelectItem value="interested-sensor">
+                      Me interesa adquirir un sensor
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -268,7 +276,10 @@ export function EarlyAccessForm() {
                     className="rounded"
                   />
                 </FormControl>
-                <label htmlFor="acceptedTerms" className="text-sm text-gray-700">
+                <label
+                  htmlFor="acceptedTerms"
+                  className="text-sm text-gray-700"
+                >
                   Acepto los términos y condiciones
                 </label>
                 <FormMessage />
